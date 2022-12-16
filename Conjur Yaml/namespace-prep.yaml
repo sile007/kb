@@ -1,0 +1,87 @@
+---
+# Source: conjur-config-namespace-prep/templates/conjur_connect_configmap.yaml
+# The Conjur Connection ConfigMap contains references to Conjur credentials,
+# taken from the "Golden ConfigMap". These can be used to enable Conjur
+# authentication for applications to retrieve secrets securely.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: conjur-connect
+  labels:
+    app.kubernetes.io/name: "conjur-connect-configmap"
+    app.kubernetes.io/instance: "conjur-default-configmap"
+    app.kubernetes.io/part-of: "conjur-config"
+    conjur.org/name: "conjur-connect-configmap"
+data:
+  CONJUR_ACCOUNT: sima
+  CONJUR_APPLIANCE_URL: https://conjur-follower.cyberark-conjur.svc.cluster.local
+  CONJUR_AUTHN_URL: https://conjur-follower.cyberark-conjur.svc.cluster.local/authn-k8s/k3s-cluster
+  CONJUR_SSL_CERTIFICATE: |- 
+    -----BEGIN CERTIFICATE-----
+    MIIDgDCCAmigAwIBAgIUVfWDFA5uEJt31CxF9Ewi5yablV0wDQYJKoZIhvcNAQEL
+    BQAwPjENMAsGA1UECgwEc2ltYTESMBAGA1UECwwJQ29uanVyIENBMRkwFwYDVQQD
+    DBBsYmNvbmp1ci5zaW1hLmNoMB4XDTIyMTEzMDA5NDQwN1oXDTMyMTEyNzA5NDQw
+    N1owGzEZMBcGA1UEAwwQbGJjb25qdXIuc2ltYS5jaDCCASIwDQYJKoZIhvcNAQEB
+    BQADggEPADCCAQoCggEBAJ5vXj9T7e7kYPLp+qY+fvXVXQWgMkZpiiwqE4qiT4+U
+    Ov/EPNe1de7WjVzhYmEiDpSQiQ0dQ0AQi6lSCXtkuZTuh+ILSPRtgvY6qaEyRdqP
+    0HrYbQI2YSrc/Pv9NfL4IBR8XfJwaw5rbwnx4sHJwPTNd2JYYCSdhKdPjqnZSjuP
+    IQbdjpb+sAtUtr/vljMzlmONRVrAH6ynsIAo2T/aZJwXbu0B35XKC9GYP62vc8oJ
+    NfgRdJlZRPMdMbLVAIUKp56fIwF1Fg7sUhW94KLZpBU3jL+0gfSNl0N7CfRSjwHf
+    KHwS+FnNjfIN5JSzgKjTH6H5gBp4ML4S6USDXWfiYeUCAwEAAaOBmDCBlTAOBgNV
+    HQ8BAf8EBAMCBaAwHQYDVR0OBBYEFNo5o+5ea0sNMlW/75VgGJCv2AcJMGQGA1Ud
+    EQRdMFuCEGxiY29uanVyLnNpbWEuY2iCFWNvbmp1ci1sZWFkZXIuc2ltYS5jaIIX
+    Y29uanVyLXN0YW5kYnkxLnNpbWEuY2iCF2Nvbmp1ci1zdGFuZGJ5Mi5zaW1hLmNo
+    MA0GCSqGSIb3DQEBCwUAA4IBAQAQILU4ijbxxsIbVb7U1Z39RL/IUONyYphFt0YB
+    sWzbj4Ivoqok0TnMYVKf54jtj1HeQs0jJNpnMOODkMNWpUwq1Maq5ZFaVciWSoKN
+    pssPGL4gAP++ybIWbYei/NzhXQYhPMGKe7MUVnPS3G4BLSuK9c60kKCOheCV+IN3
+    fWt2yMo/Ei32d2XyKDY9tbnf+tu9yKWOrPLU8e7D0RkW8OjDNUQpkpHHnu7+dnZ8
+    H0tA0sz8AVrm8CTYDaYlkvzqMAfFBvNXjFbR9HycDVnYSpuK5fiIpMEN/VBXC0up
+    NOmJ692VFTMM2y5/cu/3oCZ57fL8AOUg42+VaZFvgCbcM/Em
+    -----END CERTIFICATE-----
+    -----BEGIN CERTIFICATE-----
+    MIIDxDCCAqygAwIBAgIJAPQnsmp9Tsu7MA0GCSqGSIb3DQEBCwUAMD4xDTALBgNV
+    BAoMBHNpbWExEjAQBgNVBAsMCUNvbmp1ciBDQTEZMBcGA1UEAwwQbGJjb25qdXIu
+    c2ltYS5jaDAeFw0yMjExMzAwOTQ0MDFaFw0zMjExMjcwOTQ0MDFaMD4xDTALBgNV
+    BAoMBHNpbWExEjAQBgNVBAsMCUNvbmp1ciBDQTEZMBcGA1UEAwwQbGJjb25qdXIu
+    c2ltYS5jaDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALHNYPZtAxBI
+    F8yb1e7Odjps9SA1lL1XkM+4bOqrlMQitGoljPCGNqM8EvKy5CY6NkgsjBsq9woe
+    yqaFFgAEtVJRc8hsiGMrcs5ZJ/Zi53xACQqrA5ct0wN3hL//7+r917EYQOuIRDQu
+    77pFXP7mnkyZlKTC4DYdGTlW8TF6+ymlYixAEDGQHN51LlOiYu3EjoSj0HENLI4U
+    UufHVdfRkplE7ax3UXLbEJBkp1iVFk3dO/4Z5/Kc43Yz/GkyizqB+wSvMYRWa7ty
+    3930vuVeREOSLKHNdfhMlozSMyaK2f0tZ4BxGD1l85bW2SMAxAUqW3tmTQFaHAb4
+    A0ZSQn02EncCAwEAAaOBxDCBwTBkBgNVHREEXTBbghBsYmNvbmp1ci5zaW1hLmNo
+    ghVjb25qdXItbGVhZGVyLnNpbWEuY2iCF2Nvbmp1ci1zdGFuZGJ5MS5zaW1hLmNo
+    ghdjb25qdXItc3RhbmRieTIuc2ltYS5jaDAdBgNVHQ4EFgQULGK9nRohQP6reEi+
+    WSyuBCtUyeEwHwYDVR0jBBgwFoAULGK9nRohQP6reEi+WSyuBCtUyeEwDAYDVR0T
+    BAUwAwEB/zALBgNVHQ8EBAMCAeYwDQYJKoZIhvcNAQELBQADggEBAH5ag8s7xTQf
+    VX72U0YSGu1RS+Nhz3jhXKqgBVBm8o+xIGVVRnkEJ7d+ApvgQLaDKXztAFH+sS8y
+    7Dim/357N1LEHXvCowEnVAZ2gpaQxvcIuMaAqYspm/9h+eK+PQ9FhgMb3iUPh8hr
+    UzS+1TQBOEUXk0KKYKDCtxnyiHupBCntv74EZaNmFLxkZ28A3VK7ioFoJkmt6k/L
+    zyFilc7LZASTLI0vLUiDSVXCExNzPjz9Mk+SRyktndv5e25LggbXP+dO5+Zj90dz
+    u8zKKQJE//xpjOS5Cb0UlYerdWLW+UYqrzrx/9gftUyQ+3156Es5JYKVZR3BDtek
+    WkZvFdDmjWc=
+    -----END CERTIFICATE-----
+  CONJUR_AUTHENTICATOR_ID: k3s-cluster
+---
+# Source: conjur-config-namespace-prep/templates/authenticator_rolebinding.yaml
+# The Authenticator RoleBinding grants permissions to the Conjur Authenticator ServiceAccount
+# for the authenticator ClusterRole, which provides a list of Kubernetes API access permissions.
+# This is required to validate application identities.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: conjur-rolebinding
+  labels:
+    app.kubernetes.io/name: "conjur-rolebinding"
+    app.kubernetes.io/component: "conjur-namespace-access"
+    app.kubernetes.io/instance: "conjur-default-rolebinding"
+    app.kubernetes.io/part-of: "conjur-config"
+    conjur.org/name: "conjur-rolebinding"
+subjects:
+- kind: ServiceAccount
+  name: conjur-serviceaccount
+  namespace: conjur-oss
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: conjur-clusterrole
